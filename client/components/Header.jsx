@@ -7,13 +7,14 @@ import '../style.css';
 const Header = () => {
     return (
         <header className='header'>
-            <div className="logo">
-                <GiOrange /> Tangerine
-            </div>
-
-            <button className="btn">
+            <Link to="/" className="logo">
+                <div >
+                    <GiOrange /> Tangerine
+                </div>
+            </Link>
+            <Link to="/onboard" className="btn">
                 Create Onboard
-            </button>
+            </Link>
         </header >
     )
 }
