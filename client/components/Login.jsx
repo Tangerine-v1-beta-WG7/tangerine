@@ -55,6 +55,7 @@ const Login = () => {
             <div className="thebuttons">
             <button onClick={onClickHandler2}>Login</button>
             {error ? <div id="error-message">Username or password incorrect</div> : null}
+            <button>Sign Up</button>
             </div>
         </form>
      </div>
