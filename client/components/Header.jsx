@@ -1,28 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { GiOrange } from "react-icons/gi";
+import Dropdown from "./Dropdown.jsx";
+
 import '../style.css';
 
 const Header = () => {
-
     return (
         <header className='header'>
-            <div className="logo">
-                Tangerine
+            <Link to="/" className="logo">
+                <div >
+                    <GiOrange /> Tangerine
+                </div>
+            </Link>
+            <div className="flex-center">
+            <Link to="/onboard" className="btn">
+                Create Onboard
+            </Link>
+            <Dropdown/>
             </div>
-            <ul>
-                <li>
-                    <button className="btn">
-                        Create Onboarding
-                    </button>
-                </li>
-                <li className='btn-circle profile-icon'>
-                    Icon
-                </li>
-            </ul>
-        </header>
+        </header >
     )
 }
-
 
 
 export default Header;
