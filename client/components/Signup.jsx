@@ -28,11 +28,15 @@ const Signup = () => {
             })
           });
             setText(['', '']);
-            navigate('/login');
+            navigate('/');
 
         } catch (err) {
            console.log('some error', err)
         }
+    }
+
+    const onClickHandler2 = (e) => {
+        navigate('/')
     }
 
   return (
@@ -49,7 +53,7 @@ const Signup = () => {
           
             <div className="thebuttons">
             <button onClick={onClickHandler}>sign up</button>
-            <button>take me to login</button>
+            <button onClick={onClickHandler2}>take me to login</button>
             </div>
         </form>
      </div>

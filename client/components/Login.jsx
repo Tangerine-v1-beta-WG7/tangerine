@@ -7,6 +7,7 @@ const Login = () => {
     const [error, setError] = useState(false);
     const navigate = useNavigate();
 
+
     const onChangeHandler2 = (e) => {
         console.log(e)
         input[e.target.id] = e.target.value
@@ -42,6 +43,10 @@ const Login = () => {
         }
     }
 
+    const onClickHandler3 = (e) => {
+        navigate('/signup')
+    }
+
   return (
      <div className="signup">
         <div className="quote">
@@ -53,8 +58,8 @@ const Login = () => {
             <label htmlFor='password'>password</label>
             <input type='text'id= {1} className="signuptext" name='password' onChange={onChangeHandler2} value={input[1]}></input>
             <div className="thebuttons">
-            <button onClick={onClickHandler2}>Login</button>
-            <button>Sign Up</button>
+            <button onClick={onClickHandler2}>login</button>
+            <button onClick={onClickHandler3}>take me to sign up</button>
             </div>
             {error ? <div id="error-message">Username or password incorrect</div> : null}
 
