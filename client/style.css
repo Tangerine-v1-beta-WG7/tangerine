@@ -458,9 +458,7 @@ li {
 }
 
 #error-message {
-    padding: 2px;
     color: red; 
     font-style: italic;
     font-size: .9em;
-    margin: 6px; 
 }

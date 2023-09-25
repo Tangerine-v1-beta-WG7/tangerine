@@ -54,9 +54,10 @@ const Login = () => {
             <input type='text'id= {1} className="signuptext" name='password' onChange={onChangeHandler2} value={input[1]}></input>
             <div className="thebuttons">
             <button onClick={onClickHandler2}>Login</button>
-            {error ? <div id="error-message">Username or password incorrect</div> : null}
             <button>Sign Up</button>
             </div>
+            {error ? <div id="error-message">Username or password incorrect</div> : null}
+
         </form>
      </div>
     );
