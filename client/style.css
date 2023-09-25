@@ -7,7 +7,6 @@
     --background-hover: #ffad424a;
     --box-shadow-color: 0px 10px 40px -10px hsl(229, 6%, 66%);
 }
-@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Libre+Franklin&family=Montserrat&family=Oswald&display=swap');
 
 * {
     margin: 0;
@@ -206,6 +205,133 @@ button:disabled {
 
     .card-container {
 
+        flex-direction: column;
+
+    }
+}@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Libre+Franklin&family=Montserrat&family=Oswald&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    line-height: 2.2;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0px 10%;
+    text-align: center;
+}
+
+.card {
+    border-radius: 5px;
+    background-color: rgb(204, 204, 204);
+    box-shadow: 0px 10px 40px -10px hsl(229, 6%, 66%);
+    padding: 30px;
+    margin: 20px;
+    text-align: center;
+    height: 150px;
+    width: 28%;
+}
+
+.card-title {
+    font-size: 20px;
+    padding: 10px 15px;
+
+}
+
+.card-body {
+    padding: 10px 15px;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    background-color: #EFEFEF;
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 60px;
+}
+
+.header ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 600;
+    color: #F28500;
+    padding: 10px 40px;
+}
+
+.btn {
+    border: 1px solid #a4a4a4;
+    border-radius: 5px;
+    background: #F28500;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2em 3em;
+    margin: 10px 40px;
+}
+
+@media (max-width: 600px) {
+
+    .btn {
+
+        font-size: 12px;
+        font-weight: 700;
+        padding: 1.2em 3em;
+        margin: 0px 20px;
+    }
+
+    .card {
+
+
+        box-shadow: 0px 10px 40px -10px hsl(229, 6%, 66%);
+        padding: 15px;
+        margin: 10px 0px;
+        height: 10%;
+        width: 100%;
+    }
+
+    .logo {
+        font-size: 20px;
+        font-weight: 600;
+        color: #F28500;
+        padding: 10px 10px;
+    }
+
+
+    .header {
+        padding: 20px 20px;
+        margin-bottom: 20px;
+    }
+
+    .container {
         flex-direction: column;
 
     }
