@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const fs =require('fs');
+const fs = require('fs');
 const employeeController = require('./controller.js');
 
 const app = express();
@@ -12,7 +12,7 @@ app.use(express.json());
 
 
 //GET THE WHOLE TABLE
-app.get('/table', employeeController.getDb,  (req, res) => {
+app.get('/api/table', employeeController.getDb, (req, res) => {
     return res.status(200).json(res.locals.result);
 })
 
@@ -50,7 +50,7 @@ app.patch('/update/:id', employeeController.updateDb, employeeController.filterB
 
 
 //DELETE A ROW 
-app.delete('/delete/:id', employeeController.deleteOne, employeeController.getDb,  (req, res) => {
+app.delete('/delete/:id', employeeController.deleteOne, employeeController.getDb, (req, res) => {
     return res.status(200).send(res.locals.result);
 })
 
@@ -65,22 +65,22 @@ app.get('/', (req, res) => {
 //unknown path handler
 app.use('*', (req, res) => {
     return res.status(404).send('404 page does not exist');
-  });
+});
 
 //global error handler
 app.use((err, req, res, next) => {
     const defaultErr = {
-      log: 'Express error handler caught unknown middleware error',
-      status: 500,
-      message: { err: 'An error occurred' },
+        log: 'Express error handler caught unknown middleware error',
+        status: 500,
+        message: { err: 'An error occurred' },
     };
     const errorObj = Object.assign({}, defaultErr, err);
     console.log(errorObj.log);
     return res.status(errorObj.status).json(errorObj.message);
-  });
+});
 
 
 app.listen(PORT, () => {
     console.log(`Server listening on port: ${PORT}`);
-  });
-  
+});
+
