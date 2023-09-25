@@ -1,6 +1,6 @@
 const db = require('./model.js')
 
-const { getUser, createUser } = require('../client/googleFunc.js');
+const { deleteUser, createUser } = require('../client/googleFunc.js');
 
 const employeeController = {};
 
@@ -52,6 +52,7 @@ employeeController.addDb = async (req, res, next) => {
     const result = await db.query(myQuery, values);
     // console.log(result);
     await createUser(name, email, phone_number)
+
     return next()
   } catch (err) {
     return next({

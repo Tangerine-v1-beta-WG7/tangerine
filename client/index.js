@@ -24,21 +24,22 @@ import Signup from "./components/Signup.jsx";
 import Login from "./components/Login.jsx"
 
 
-const router = createBrowserRouter([ {
-    path: "/",
-    element: <Login />},
-    {
-      path: "home",
-      element: <Home />,
-    }, 
-  {
-    path: "onboard",
-    element: <Onboarding />,
-  }, 
-  {
-    path: "signup",
-    element: <Signup />
-  }  
+const router = createBrowserRouter([{
+  path: "/",
+  element: <Login />
+},
+{
+  path: "home",
+  element: <Home />,
+},
+{
+  path: "onboard",
+  element: <Onboarding />,
+},
+{
+  path: "signup",
+  element: <Signup />
+}
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
