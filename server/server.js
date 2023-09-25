@@ -83,8 +83,11 @@ app.get('/api/', (req, res) => {
 
 //unknown path handler
 app.use('/api/*', (req, res) => {
-    return res.status(404).send('404 page does not exist');
+    console.log('hey');
+    // return res.status(404).send('404 page does not exist');
 });
+
+
 
 //global error handler
 app.use((err, req, res, next) => {
