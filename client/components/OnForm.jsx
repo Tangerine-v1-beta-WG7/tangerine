@@ -3,14 +3,14 @@ import React, { useState } from "react";
 const OnForm = () => {
 
     const [form, setForm] = useState({
-        employee_name: '',
+        name: '',
         role: '', 
         department: '',
         salary: '', 
-        start: '', 
+        start_date: '', 
         type: '', 
-        dob: '',
-        phone: '', 
+        birthday: '',
+        phone_number: '', 
         email: '',
     })
 
@@ -22,7 +22,15 @@ const OnForm = () => {
     }
 
     const handleClick = (e) => {
-        console.log(form);
+        e.preventDefault(); 
+        fetch('api/add', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",          
+            },
+            body: JSON.stringify(form)
+        });
+        setForm({});
     }
 
     return (
@@ -33,7 +41,7 @@ const OnForm = () => {
                     <ul>
                         <li>
                             <label htmlFor="name">Employee Name</label>
-                            <input type="text" id="name" name="employee_name" onChange={handleChange} />
+                            <input type="text" id="name" name="name" onChange={handleChange} />
                         </li>
                         <li>
                             <label htmlFor="role">Role</label>
@@ -42,10 +50,10 @@ const OnForm = () => {
                         <li>
                             <label htmlFor="department">Department</label>
                             <select name="department" id="department" onChange={handleChange}>
-                                <option value="education">Education</option>
-                                <option value="engineering">Engineering</option>
-                                <option value="human-resources">Human Resources</option>
-                                <option value="operations">Operations</option>
+                                <option value="Education">Education</option>
+                                <option value="Engineering">Engineering</option>
+                                <option value="Human Resources">Human Resources</option>
+                                <option value="Operations">Operations</option>
                             </select>
                             
                         </li>
@@ -55,7 +63,7 @@ const OnForm = () => {
                         </li>
                         <li>
                             <label htmlFor="start">Start Date</label>
-                            <input type="start" id="start" name="start" onChange={handleChange} />
+                            <input type="start" id="start" name="start_date" onChange={handleChange} />
                         </li>
                         <li>
                             <label htmlFor="type">Type</label>
@@ -63,11 +71,11 @@ const OnForm = () => {
                         </li>
                         <li>
                             <label htmlFor="dob">Date of Birth</label>
-                            <input type="text" id="dob" name="dob" onChange={handleChange} />
+                            <input type="text" id="dob" name="birthday" onChange={handleChange} />
                         </li>
                         <li>   
                             <label htmlFor="phone">Phone Number</label>
-                            <input type="text" id="phone" name="phone" onChange={handleChange} />
+                            <input type="text" id="phone" name="phone_number" onChange={handleChange} />
                         </li>
                         <li>
                             <label htmlFor="email">Email</label>
