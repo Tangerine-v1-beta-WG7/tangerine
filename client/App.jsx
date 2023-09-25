@@ -7,17 +7,31 @@ import Home from "./pages/Home.jsx";
 
 const App = () => {
     return (
-        <Router>
-            <Header />
-            <div className="container">
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/onboard" element={<Onboarding />} />
-                </Routes>
-
-            </div>
-        </Router>
+        <>
+        <Header />
+        </>
+ 
     )
 }
 
 export default App;
+
+
+// const App = () => {
+//     return (
+//         // <Router>
+//         <>
+   
+//         <Header />
+//         <div className="container">
+//             {/* <Home /> */}
+    
+//             {/* <Routes>
+//                 <Route path="/" element={<Home />} />
+//                 <Route path="/onboard" element={<Onboarding />} />
+//             </Routes> */}
+
+//         </div>
+//         {/* </Router> */}
+
+// </>
