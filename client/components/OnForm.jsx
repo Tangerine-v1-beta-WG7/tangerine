@@ -17,11 +17,7 @@ const OnForm = () => {
         email: '',
     }
 
-    const [form, setForm] = useState({})
-
-    useEffect(() => {
-        setForm(formDefaults)
-    }, [])
+    const [form, setForm] = useState(formDefaults)
 
     const handleChange = (e) => {
         setForm({
@@ -32,7 +28,6 @@ const OnForm = () => {
 
     const handleClick = async (e) => {
         e.preventDefault();
-        setForm(formDefaults);
 
         try {
             await fetch('api/add', {
@@ -42,7 +37,7 @@ const OnForm = () => {
                 },
                 body: JSON.stringify(form)
             });
-
+            setForm(formDefaults);
             navigate('/');
         }
 
