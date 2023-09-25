@@ -9,7 +9,15 @@ const App = () => {
     return (
         <>
             <Header />
-            <Onboarding />
+            <div className="container">
+                <React.Fragment>
+                    <Card title='Total Employee Count' amount='249' />
+                    <Card title='Onboards this week' amount='12' />
+                    <Card title='Offboards this week' amount='4' />
+
+                </React.Fragment>
+
+            </div>
         </>
     )
 }
