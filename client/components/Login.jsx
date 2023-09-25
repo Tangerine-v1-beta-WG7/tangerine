@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
     const [input, setInput] = useState(['', '']);
+    const navigate = useNavigate();
 
     const onChangeHandler2 = (e) => {
         console.log(e)
@@ -23,8 +26,10 @@ const Login = () => {
                 password: input[1]
             })
           })
-        
-        setInput(['', '']);
+            setInput(['', '']);
+
+            // navigate('/');
+
         } catch (err) {
            console.log('some error', err)
         }

@@ -7,7 +7,7 @@ import '../style.css';
 const Header = () => {
     return (
         <header className='header'>
-            <Link to="/home" className="logo">
+            <Link to="/" className="logo">
                 <div >
                     <GiOrange /> Tangerine
                 </div>

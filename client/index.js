@@ -19,28 +19,26 @@ import {
 
 import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
-import Onboarding, { teamLoader } from "./pages/Onboarding.jsx";
+import Onboarding from "./pages/Onboarding.jsx";
+import Signup from "./components/Signup.jsx";
+import Login from "./components/Login.jsx"
 
-const router = createBrowserRouter([
-  {
-    path: "home",
-    element: <Home />},
+
+const router = createBrowserRouter([ {
+    path: "/",
+    element: <Login />},
+    {
+      path: "home",
+      element: <Home />,
+    }, 
   {
     path: "onboard",
     element: <Onboarding />,
-  }
-    
-    // children: [
-    //   {
-    //     path: "home",
-    //     element: <Home />,
-    //   },
-    //   {
-    //     path: "onboard",
-    //     element: <Onboarding />,
-    //   },
-    // ],
-  // },
+  }, 
+  {
+    path: "signup",
+    element: <Signup />
+  }  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

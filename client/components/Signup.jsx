@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Signup = () => {
     const [text, setText] = useState(['', '']);
+    const navigate = useNavigate();
 
     const onChangeHandler = (e) => {
         console.log(e)
@@ -22,9 +26,10 @@ const Signup = () => {
                 username: text[0],
                 password: text[1]
             })
-          })
-        
-        setText(['', '']);
+          });
+            setText(['', '']);
+            navigate('/login');
+
         } catch (err) {
            console.log('some error', err)
         }
