@@ -47,6 +47,7 @@ const Login = () => {
             <input type='text'id= {1} className="signuptext" name='password' onChange={onChangeHandler2} value={input[1]}></input>
             <div className="thebuttons">
             <button onClick={onClickHandler2}>Login</button>
+            <button>Sign Up</button>
             </div>
         </form>
      </div>
