@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Libre+Franklin&family=Montserrat&family=Oswald&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -124,3 +126,73 @@ li {
 
     }
 }
+
+  form {
+    font-family: 'Libre Franklin', sans-serif;
+  }
+
+  
+  form {
+    margin: auto; 
+    width: auto; 
+    max-width: 800px;
+    border: 2px solid white;
+  }
+
+  fieldset {
+    display: flex; 
+    padding: 100px;  
+    padding-top: 40px;
+    padding-bottom: 40px; 
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid rgb(255, 157, 0); 
+    width: 80%; 
+    max-width: 750px; 
+    margin: auto; 
+    margin-top: 1%; 
+    margin-bottom: 5%;
+  }
+
+ fieldset > legend {
+    font-size: 1.5rem;
+    padding: 10px; 
+
+  }
+
+  #employee-info > ul {
+    width: 600px;
+
+  }
+
+  #employee-info > ul > li {
+    width: 90%;
+    margin: 20px;
+    display: grid; 
+    grid-template-columns: 1fr 2fr 
+
+  }
+
+  #employee-info > ul > li > label {
+    font-size: 1rem;
+    padding-right: 10px;
+  }
+
+  #employee-info > ul > li > input, select {
+    font-size: 1rem;
+    border: 2px solid #e0dfde;
+    border-radius: 15px;
+    width: auto; 
+    height: 32px;
+    padding: 0 10px; 
+  }
+
+
+ #addNew {
+    align-self: center;
+    background: #f47d68;
+    border: 4px solid rgb(255, 157, 0);
+
+ }
+
+ 
