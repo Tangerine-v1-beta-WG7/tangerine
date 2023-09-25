@@ -12,45 +12,45 @@ app.use(express.json());
 
 
 //GET THE WHOLE TABLE
-app.get('/table', employeeController.getDb,  (req, res) => {
+app.get('/api/table', employeeController.getDb,  (req, res) => {
     return res.status(200).json(res.locals.result);
 })
 
 //filter by EMPLOYEE ID
-app.get('/id/:id', employeeController.filterById, (req, res) => {
+app.get('/api/id/:id', employeeController.filterById, (req, res) => {
     return res.status(200).json(res.locals.result);
 })
 
 
 //filter by DEPARTMENT
-app.get('/department/:dept', employeeController.filterByDept, (req, res) => {
+app.get('/api/department/:dept', employeeController.filterByDept, (req, res) => {
     return res.status(200).json(res.locals.result);
 })
 
 //filter by ROLE
-app.get('/role/:role', employeeController.filterByRole, (req, res) => {
+app.get('/api/role/:role', employeeController.filterByRole, (req, res) => {
     return res.status(200).json(res.locals.result);
 })
 
 //filter by SALARY
-app.get('/salary/:num', employeeController.filterBySalary, (req, res) => {
+app.get('/api/salary/:num', employeeController.filterBySalary, (req, res) => {
     return res.status(200).json(res.locals.result);
 })
 
 //ADD A ROW TO TABLE, INFO IN REQ BODY
-app.post('/add', employeeController.addDb, employeeController.getDb, (req, res) => {
+app.post('/api/add', employeeController.addDb, employeeController.getDb, (req, res) => {
     return res.status(200).json(res.locals.result);
 })
 
 //UPDATE A ROW VALID ENTRIES ---> name, role, dept, salay, type, phone_number, email
-app.patch('/update/:id', employeeController.updateDb, employeeController.filterById, (req, res) => {
+app.patch('/api/update/:id', employeeController.updateDb, employeeController.filterById, (req, res) => {
     return res.status(200).json(res.locals.result);
 })
 
 
 
 //DELETE A ROW 
-app.delete('/delete/:id', employeeController.deleteOne, employeeController.getDb,  (req, res) => {
+app.delete('/api/delete/:id', employeeController.deleteOne, employeeController.getDb,  (req, res) => {
     return res.status(200).send(res.locals.result);
 })
 
@@ -58,12 +58,12 @@ app.delete('/delete/:id', employeeController.deleteOne, employeeController.getDb
 
 
 //SERVER CHECK
-app.get('/', (req, res) => {
+app.get('/api/', (req, res) => {
     return res.status(200).send('the server works!!');
 })
 
 //unknown path handler
-app.use('*', (req, res) => {
+app.use('/api/*', (req, res) => {
     return res.status(404).send('404 page does not exist');
   });
 
