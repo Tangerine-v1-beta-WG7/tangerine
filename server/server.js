@@ -71,7 +71,7 @@ app.post('/api/signup', loginController.addUser, (req, res) => {
 
 //login a user
 app.post('/api/login', loginController.verifyUser, (req, res) => {
-    return res.status(200).send('this worked user logged in');
+    return res.status(200).send(res.locals.user);
 })
 
 

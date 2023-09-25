@@ -31,14 +31,18 @@ const Login = () => {
     }
 
   return (
-     <div>
-        <div>something for jake this is where u login</div>
-        <form>
+     <div className="signup">
+        <div className="quote">
+            <div className="innerquote">Log in for Speedy Employee Service</div>   
+        </div>
+        <form className="signupform">
             <label htmlFor='username'>username</label>
-            <input type='text'id= {0} name='username' onChange={onChangeHandler2} value={input[0]}></input>
+            <input type='text'id= {0} className="signuptext" name='username' onChange={onChangeHandler2} value={input[0]}></input>
             <label htmlFor='password'>password</label>
-            <input type='text'id= {1} name='password' onChange={onChangeHandler2} value={input[1]}></input>
+            <input type='text'id= {1} className="signuptext" name='password' onChange={onChangeHandler2} value={input[1]}></input>
+            <div className="thebuttons">
             <button onClick={onClickHandler2}>Login</button>
+            </div>
         </form>
      </div>
     );

@@ -31,8 +31,10 @@ loginController.verifyUser = async (req, res, next) => {
        result.comparePassword(password, function(err, isMatch){
        
         if (!isMatch) {
-          return res.redirect('/api/signup');
+          res.locals.user = 'false';
+          return next();
         }
+        es.locals.user = 'true'
         return next();
       });
 
