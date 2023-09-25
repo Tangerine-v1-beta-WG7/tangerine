@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const OnForm = () => {
 
-    const [form, setForm] = useState({
+    const navigate = useNavigate();
+
+    const formDefaults = {
         name: '',
         role: '', 
         department: '',
@@ -12,7 +15,13 @@ const OnForm = () => {
         birthday: '',
         phone_number: '', 
         email: '',
-    })
+    }
+
+    const [form, setForm] = useState({})
+
+    useEffect(() => {
+        setForm(formDefaults)
+    }, [])
 
     const handleChange = (e) => {
         setForm({
@@ -21,16 +30,25 @@ const OnForm = () => {
         })
     }
 
-    const handleClick = (e) => {
+    const handleClick = async (e) => {
         e.preventDefault(); 
-        fetch('api/add', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",          
-            },
-            body: JSON.stringify(form)
-        });
-        setForm({});
+        setForm(formDefaults);
+
+        try {
+            fetch('api/add', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",          
+                },
+                body: JSON.stringify(form)
+            });
+            navigate('/');
+        }
+
+        catch (error) {
+            console.error('An error occurred:', error);
+        }
+        
     }
 
     return (
@@ -41,15 +59,15 @@ const OnForm = () => {
                     <ul>
                         <li>
                             <label htmlFor="name">Employee Name</label>
-                            <input type="text" id="name" name="name" onChange={handleChange} />
+                            <input type="text" id="name" name="name" value={form.name} onChange={handleChange} />
                         </li>
                         <li>
                             <label htmlFor="role">Role</label>
-                            <input type="text" id="role" name="role" onChange={handleChange}/>
+                            <input type="text" id="role" name="role" value={form.role} onChange={handleChange}/>
                         </li>
                         <li>
                             <label htmlFor="department">Department</label>
-                            <select name="department" id="department" onChange={handleChange}>
+                            <select name="department" id="department" value={form.department} onChange={handleChange}>
                                 <option value="Education">Education</option>
                                 <option value="Engineering">Engineering</option>
                                 <option value="Human Resources">Human Resources</option>
@@ -59,30 +77,31 @@ const OnForm = () => {
                         </li>
                         <li>
                             <label htmlFor="salary">Salary</label>
-                            <input type="text" id="salary" name="salary" onChange={handleChange} />
+                            <input type="text" id="salary" name="salary" value={form.salary} onChange={handleChange} />
                         </li>
                         <li>
                             <label htmlFor="start">Start Date</label>
-                            <input type="start" id="start" name="start_date" onChange={handleChange} />
+                            <input type="start" id="start" name="start_date" value={form.start_date} onChange={handleChange} />
                         </li>
                         <li>
                             <label htmlFor="type">Type</label>
-                            <input type="text" id="type" name="type" onChange={handleChange} /> 
+                            <input type="text" id="type" name="type" value={form.type} onChange={handleChange} /> 
                         </li>
                         <li>
                             <label htmlFor="dob">Date of Birth</label>
-                            <input type="text" id="dob" name="birthday" onChange={handleChange} />
+                            <input type="text" id="dob" name="birthday" value={form.birthday} onChange={handleChange} />
                         </li>
                         <li>   
                             <label htmlFor="phone">Phone Number</label>
-                            <input type="text" id="phone" name="phone_number" onChange={handleChange} />
+                            <input type="text" id="phone" name="phone_number" value={form.phone_number} onChange={handleChange} />
                         </li>
                         <li>
                             <label htmlFor="email">Email</label>
-                            <input type="text" id="email" name="email" onChange={handleChange} />
+                            <input type="text" id="email" name="email" value={form.email} onChange={handleChange} />
                         </li>
                       
                     </ul>
+                    
                     <button className='btn' id='addNew' onClick={handleClick}>Add New Employee</button>
 
                 </fieldset>

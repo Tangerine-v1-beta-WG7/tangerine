@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Libre+Franklin&family=Montserrat&family=Oswald&display=swap');
+
 :root {
     /* Color Variables */
     --primary-color: #F28500;
@@ -8,14 +10,17 @@
     --box-shadow-color: 0px 10px 40px -10px hsl(229, 6%, 66%);
 }
 
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Libre Franklin', sans-serif;
+
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
     height: 100vh;
 }
 
@@ -208,7 +213,7 @@ button:disabled {
         flex-direction: column;
 
     }
-}@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Libre+Franklin&family=Montserrat&family=Oswald&display=swap');
+}
 
 * {
     margin: 0;
