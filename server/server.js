@@ -2,12 +2,19 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const employeeController = require('./controller.js');
+const { default: mongoose } = require('mongoose');
+const dotenv = require('dotenv').config();
+const loginController = require('./loginController.js');
+
+const mongoURI = process.env.mongoURI;
+
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
 
+mongoose.connect(mongoURI);
 
 
 
@@ -54,6 +61,18 @@ app.delete('/api/delete/:id', employeeController.deleteOne, employeeController.g
     return res.status(200).send(res.locals.result);
 })
 
+
+
+//SAVE A USER
+app.post('/api/signup', loginController.addUser, (req, res) => {
+    return res.status(200).json(res.locals.loginId);
+})
+
+
+//login a user
+app.post('/api/login', loginController.verifyUser, (req, res) => {
+    return res.status(200).send('this worked user logged in');
+})
 
 
 
