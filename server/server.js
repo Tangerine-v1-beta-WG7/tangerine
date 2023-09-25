@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const fs =require('fs');
+const fs = require('fs');
 const employeeController = require('./controller.js');
 
 const app = express();
@@ -65,22 +65,22 @@ app.get('/api/', (req, res) => {
 //unknown path handler
 app.use('/api/*', (req, res) => {
     return res.status(404).send('404 page does not exist');
-  });
+});
 
 //global error handler
 app.use((err, req, res, next) => {
     const defaultErr = {
-      log: 'Express error handler caught unknown middleware error',
-      status: 500,
-      message: { err: 'An error occurred' },
+        log: 'Express error handler caught unknown middleware error',
+        status: 500,
+        message: { err: 'An error occurred' },
     };
     const errorObj = Object.assign({}, defaultErr, err);
     console.log(errorObj.log);
     return res.status(errorObj.status).json(errorObj.message);
-  });
+});
 
 
 app.listen(PORT, () => {
     console.log(`Server listening on port: ${PORT}`);
-  });
-  
+});
+
