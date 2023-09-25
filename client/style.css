@@ -4,8 +4,6 @@
     box-sizing: border-box;
 }
 
-
-
 body {
     font-family: 'Poppins', sans-serif;
     height: 100vh;
@@ -19,13 +17,43 @@ li {
     line-height: 2.2;
 }
 
+.container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0px 10%;
+    text-align: center;
+}
+
+.card {
+    border-radius: 5px;
+    background-color: rgb(204, 204, 204);
+    box-shadow: 0px 10px 40px -10px hsl(229, 6%, 66%);
+    padding: 30px;
+    margin: 20px;
+    text-align: center;
+    height: 150px;
+    width: 28%;
+}
+
+.card-title {
+    font-size: 20px;
+    padding: 10px 15px;
+
+}
+
+.card-body {
+    padding: 10px 15px;
+}
+
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0px;
-    background-color: rgb(255, 255, 255);
+    padding: 20px 10%;
+    background-color: #EFEFEF;
     border-bottom: 1px solid #e6e6e6;
     margin-bottom: 60px;
 }
@@ -36,44 +64,63 @@ li {
     justify-content: space-between;
 }
 
-.header ul li a:hover {
-    color: #777;
-}
-
 .logo {
     font-size: 30px;
     font-weight: 600;
-    color: rgb(255, 157, 0);
+    color: #F28500;
     padding: 10px 40px;
 }
 
 .btn {
     border: 1px solid #a4a4a4;
     border-radius: 5px;
-    background: rgb(255, 157, 0);
+    background: #F28500;
     color: #ffffff;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 700;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 20px;
+    padding: 1.2em 3em;
+    margin: 10px 40px;
 }
 
-.circle {
-    display: inline-block;
-      background-color: #00d53b;
-      margin: 10px;
-      border-radius: 50%;
-  }
-  .circle-inner {
-    color: white;
-    display: table-cell;
-    vertical-align: middle; 
-    text-align: center;
-    text-decoration: none;
-    height: 100px;
-    width: 100px;  
-    font-size: 30px;
-  }
+@media (max-width: 600px) {
+
+    .btn {
+
+        font-size: 12px;
+        font-weight: 700;
+        padding: 1.2em 3em;
+        margin: 0px 20px;
+    }
+
+    .card {
+
+
+        box-shadow: 0px 10px 40px -10px hsl(229, 6%, 66%);
+        padding: 15px;
+        margin: 10px 0px;
+        height: 10%;
+        width: 100%;
+    }
+
+    .logo {
+        font-size: 20px;
+        font-weight: 600;
+        color: #F28500;
+        padding: 10px 10px;
+    }
+
+
+    .header {
+        padding: 20px 20px;
+        margin-bottom: 20px;
+    }
+
+    .container {
+        flex-direction: column;
+
+    }
+}
