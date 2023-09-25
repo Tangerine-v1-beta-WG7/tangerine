@@ -456,3 +456,11 @@ li {
     margin: 20px;
     margin-bottom: 70px;
 }
+
+#error-message {
+    padding: 2px;
+    color: red; 
+    font-style: italic;
+    font-size: .9em;
+    margin: 6px; 
+}

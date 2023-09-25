@@ -34,7 +34,7 @@ loginController.verifyUser = async (req, res, next) => {
           res.locals.user = 'false';
           return next();
         }
-        es.locals.user = 'true'
+        res.locals.user = 'true'
         return next();
       });
 

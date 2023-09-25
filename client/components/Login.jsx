@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [input, setInput] = useState(['', '']);
+    const [error, setError] = useState(false);
     const navigate = useNavigate();
 
     const onChangeHandler2 = (e) => {
@@ -27,8 +28,14 @@ const Login = () => {
             })
           })
             setInput(['', '']);
+            const data = await res.json();
 
-            // navigate('/');
+            console.log(data);
+            if (data==true) {
+                setError(false)
+                navigate('/home');
+            }
+            else setError(true);
 
         } catch (err) {
            console.log('some error', err)
@@ -47,6 +54,7 @@ const Login = () => {
             <input type='text'id= {1} className="signuptext" name='password' onChange={onChangeHandler2} value={input[1]}></input>
             <div className="thebuttons">
             <button onClick={onClickHandler2}>Login</button>
+            {error ? <div id="error-message">Username or password incorrect</div> : null}
             </div>
         </form>
      </div>
