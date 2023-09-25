@@ -27,7 +27,6 @@ const Login = () => {
             })
           })
             setInput(['', '']);
-            console.log('heyyyyy', res.body);
 
             // navigate('/');
 

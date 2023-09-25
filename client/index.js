@@ -26,20 +26,19 @@ import Login from "./components/Login.jsx"
 
 const router = createBrowserRouter([ {
     path: "/",
-    element: <Home />},
+    element: <Login />},
+    {
+      path: "home",
+      element: <Home />,
+    }, 
   {
     path: "onboard",
     element: <Onboarding />,
   }, 
   {
     path: "signup",
-    element: <Signup />,
-  }, 
-  {
-    path: "login",
-    element: <Login />
-  }
-    
+    element: <Signup />
+  }  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
