@@ -20,12 +20,15 @@ a {
 
 .dropdown-menu {
     position: absolute;
-    height: 400px;
-    right: 20px;
-    background-color: gainsboro;
-    padding: 10px 20px;
+    height: auto;
+    right: 3%;
+    background-color: rgb(241, 241, 241);
+    border: 3px solid #F28500;
+    padding: 0px 50px; 
     border-radius: 8px;
-    width: 200px;
+    width: auto;
+    z-index: 99;
+    
 }
 .box{
     display: flex;
@@ -88,7 +91,7 @@ h3{
 }
 
 .dropdownItem img{
-    max-width: 20px;
+    max-width: 30px;
     margin-right: 10px;
     opacity: 0.5;
     transition: 500ms;
@@ -113,11 +116,14 @@ h3{
 
 .info-menu {
     position: absolute;
+    right: 8%; 
     height: 400px;
     background-color: gainsboro;
     border-radius: 8px;
     width: 350px;
     z-index:99;
+    border: 3px solid #F28500;
+
 }
 .infobox{
     display: flex;
