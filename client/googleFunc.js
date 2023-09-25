@@ -43,6 +43,20 @@ async function createUser(fullName, email, phone) {
     return result.data;
 }
 
+async function deleteUser() {
+    const auth = await authorize();
+    const userObj = {
+        "userKey": 'tests@jakebayar.com',
+    };
+
+    const result = await admin.users.delete({
+        auth: auth,
+        requestBody: userObj
+    });
+    console.log(result);
+    return result.data;
+}
+
 // async function getUser(userEmail = 'self@jakebayar.com') {
 //     const auth = await authorize();
 
@@ -56,4 +70,4 @@ async function createUser(fullName, email, phone) {
 // }
 // module.exports = { getUser, createUser };
 
-module.exports = { createUser };
+module.exports = { createUser, deleteUser };
