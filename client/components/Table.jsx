@@ -5,7 +5,7 @@ import Info from "./Info.jsx"
 const Table = () => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [rowsPerPage] = useState(10); 
+    const [rowsPerPage] = useState(10);
 
     const getTableFunc = () => {
         fetch("/api/table")
@@ -48,7 +48,7 @@ const Table = () => {
                             <td>{employee.department}</td>
                             <td>{employee.type}</td>
                             <td>{formatDate(employee.start_date)}</td>
-                            <td><Info {...employee} getTableFunc={getTableFunc}/></td>
+                            <td><Info {...employee} getTableFunc={getTableFunc} /></td>
                         </tr>
                     ))}
                 </tbody>

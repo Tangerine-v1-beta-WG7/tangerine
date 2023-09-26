@@ -20,8 +20,8 @@ import {
 import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 import Onboarding from "./pages/Onboarding.jsx";
-import Signup from "./components/Signup.jsx";
-import Login from "./components/Login.jsx"
+import Signup from "./pages/Signup.jsx";
+import Login from "./pages/Login.jsx"
 
 
 const router = createBrowserRouter([{
