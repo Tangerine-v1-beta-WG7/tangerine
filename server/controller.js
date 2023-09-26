@@ -7,7 +7,21 @@ const employeeController = {};
 //createing intial table
 employeeController.createDb = async (req, res, next) => {
   try {
-    const myQuery = `CREATE TABLE employees( employee_id SERIAL PRIMARY KEY, name VARCHAR(50) NOT NULL, role VARCHAR(50) NOT NULL, department VARCHAR(50) NOT NULL);`
+    // const myQuery = `CREATE TABLE employees( employee_id SERIAL PRIMARY KEY, name VARCHAR(50) NOT NULL, role VARCHAR(50) NOT NULL, department VARCHAR(50) NOT NULL);`
+
+    const myQuery = `CREATE TABLE employees (
+      employee_id SERIAL PRIMARY KEY,
+      first_name VARCHAR(255),
+      last_name VARCHAR(255),
+      role VARCHAR(255),
+      department VARCHAR(255),
+      salary DECIMAL(15),
+      type VARCHAR(50),
+      birthday DATE,
+      phone_number VARCHAR(15),
+      email VARCHAR(255),
+      start_date DATE
+  );`
     const result = await db.query(myQuery);
     res.locals.result = result;
     return next()
@@ -43,8 +57,6 @@ employeeController.addDb = async (req, res, next) => {
     myQuery = 'INSERT INTO employees (employee_id, name, role, department, salary, type, birthday, phone_number, email) VALUES ( DEFAULT, $1, $2 , $3, $4, $5, $6, $7, $8)';
     values = [name, role, department, Number(salary), type, dateObjbd, phone_number, email];
   }
-
-
 
   try {
 
