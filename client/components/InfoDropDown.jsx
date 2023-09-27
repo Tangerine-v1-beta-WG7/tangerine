@@ -43,7 +43,6 @@ const Info = (props) => {
                     Offboard
                 </button>
                 <button className="button-style">
-                    {/* onClick={() => console.log('hello')}> */}
                     Edit
                 </button>
                 </div>

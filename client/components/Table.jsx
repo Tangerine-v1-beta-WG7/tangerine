@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import Info from "./Info.jsx"
-
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Style from "/client/style.css"
 
 const Table = () => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [rowsPerPage] = useState(10);
+    const [employeeDropdownStates, setEmployeeDropdownStates] = useState({}); // Info drop-down toggle state
 
     const getTableFunc = () => {
         fetch("/api/table")
@@ -25,59 +30,52 @@ const Table = () => {
         const date = new Date(databaseDate);
         return date.toISOString().split('T')[0];
     }
+
     return (
         <div className="container">
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
             <div className='tableHead'>
-                <span>Name</span>
-                <span>Role</span>
-                <span>Department</span>
-                <span>Start Date</span>
-                <span>Type</span>
+                <span className="tableHeadName">First Name</span>
+                <span className="tableHeadName">Last Name</span>
+                <span className="tableHeadName">Role</span>
+                <span className="tableHeadName">Department</span>
+                <span className="tableHeadName">Start Date</span>
+                <span className="tableHeadName">Type</span>
             </div> 
             <div className="tableBody">
-                {currentData.map((employee) => (
-                    <div key={employee.employee_id} className="employee">
-                        <div className="employee-info">
-                            <span><strong>Name:</strong> {employee.name}</span>
-                            <span><strong>Role:</strong> {employee.role}</span>
-                            <span><strong>Department:</strong> {employee.department}</span>
-                            <span><strong>Start Date:</strong> {formatDate(employee.start_date)}</span>
-                            <span><strong>Type:</strong> {employee.type}</span>
-                        </div>
-                    </div>
-                ))}
+    {currentData.map((employee) => (
+    <Accordion key={employee.employee_id}>
+        <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1a-content"
+        id="panel1a-header">
+        <Typography>
+            <div className="TypographyInfo">
+            <span className="employeeInfo">{employee.first_name}</span>
+            <span className="employeeInfo">{employee.last_name}</span>
+            <span className="employeeInfo">{employee.department}</span>
+            <span className="employeeInfo">{employee.role}</span>
+            <span className="employeeInfo">
+                {formatDate(employee.start_date)}
+            </span>
+            <span className="employeeInfo">{employee.type}</span>
             </div>
-            {/* <table>
-                <thead> 
-                    <tr> 
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Department</th>
-                        <th>Type</th> 
-                        <th>Start Date</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {currentData.map((employee) => (
-                        <tr key={employee.employee_id}>
-                            <td>{employee.first_name}</td>
-                            <td>{employee.last_name}</td>
-                            <td>{employee.role}</td>
-                            <td>{employee.department}</td>
-                            <td>{employee.type}</td>
-                            <td>{formatDate(employee.start_date)}</td>
-                            <td><Info {...employee} getTableFunc={getTableFunc} /></td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table> */}
+        </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+        <Typography>
+            <div className="employeeDetail">Salary: {employee.salary}</div>
+            <div className="employeeDetail">Birthday: {employee.birthday}</div>
+            <div className="employeeDetail">Email: {employee.email}</div>
+            <div className="employeeDetail">Phone Number: {employee.phone_number}</div>
+            <br />
+            <button>Gettem Outta Here</button>
+            <button>Change This Person</button>
+        </Typography>
+        </AccordionDetails>
+    </Accordion>
+    ))}
+</div>
+
             <br></br>
             <div className="flex-center">
                 <button className="button-style"
@@ -94,4 +92,5 @@ const Table = () => {
         </div>
     );
 }
+
 export default Table;

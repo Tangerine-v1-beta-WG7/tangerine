@@ -34,6 +34,7 @@ const Dashboard = () => {
                 <Card title='Full Time Employees' amount={totalFulltime} />
                 <Card title='Contractors' amount={totalContractors} />
             </div>
+            <br></br>
         </>
     )
 }
