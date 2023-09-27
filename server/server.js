@@ -3,13 +3,8 @@ const express = require('express');
 const dotenv = require('dotenv').config();
 const path = require('path');
 const fs = require('fs');
-const employeeController = require('./controller.js');
-const { default: mongoose } = require('mongoose');
-const dotenv = require('dotenv').config();
-const loginController = require('./loginController.js');
 
-const mongoURI = process.env.mongoURI;
-
+const { errorHandler } = require('./middleware/errorHandlerMiddleware.js')
 
 const app = express();
 
