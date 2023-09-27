@@ -27,6 +27,12 @@ const Table = () => {
     }
     return (
         <div className="container">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
             <div className='tableHead'>
                 <span>Name</span>
                 <span>Role</span>
@@ -61,7 +67,8 @@ const Table = () => {
                 <tbody>
                     {currentData.map((employee) => (
                         <tr key={employee.employee_id}>
-                            <td>{employee.name}</td>
+                            <td>{employee.first_name}</td>
+                            <td>{employee.last_name}</td>
                             <td>{employee.role}</td>
                             <td>{employee.department}</td>
                             <td>{employee.type}</td>
