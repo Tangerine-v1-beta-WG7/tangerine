@@ -1,6 +1,10 @@
 const db = require('./model.js')
 
-const { deleteUser, createUser } = require('../client/googleFunc.js');
+const { deleteUser, createUser } = require('../client/services/googleFunc.js');
+
+const { slackCreation } = require ('../client/services/slackFunc.js');
+
+const schedule = require('node-schedule');
 
 const employeeController = {};
 
@@ -34,29 +38,15 @@ employeeController.createDb = async (req, res, next) => {
 
 //adding employees
 employeeController.addDb = async (req, res, next) => {
-  const { name, role, department, salary, type, birthday, phone_number, email, start_date } = req.body;
+  const { first_name, last_name, role, department, salary, type, birthday, phone_number, email, start_date } = req.body;
 
   let myQuery;
   let values;
 
-  let dateStringbd = birthday;
-  // console.log('START DATE', start_date)
-  let [daybd, monthbd, yearbd] = dateStringbd.split('/')
-  const dateObjbd = new Date(+yearbd, +monthbd - 1, +daybd)
+  // start_date and birthday no longer need to be parsed as strings because the html date type does it for us
+  myQuery = 'INSERT INTO employees (employee_id, first_name, last_name, role, department, salary, type, birthday, phone_number, email, start_date) VALUES ( DEFAULT, $1, $2 , $3, $4, $5, $6, $7, $8, $9, $10)';
+  values = [first_name, last_name, role, department, Number(salary), type, birthday, phone_number, email, start_date];
 
-  if (start_date) {
-
-    let dateStringst = start_date;
-    // console.log('START DATE', start_date)
-    let [dayst, monthst, yearst] = dateStringst.split('/')
-    const dateObjst = new Date(+yearst, +monthst - 1, +dayst)
-
-    myQuery = 'INSERT INTO employees (employee_id, name, role, department, salary, type, birthday, phone_number, email, start_date) VALUES ( DEFAULT, $1, $2 , $3, $4, $5, $6, $7, $8, $9)';
-    values = [name, role, department, Number(salary), type, dateObjbd, phone_number, email, dateObjst];
-  } else {
-    myQuery = 'INSERT INTO employees (employee_id, name, role, department, salary, type, birthday, phone_number, email) VALUES ( DEFAULT, $1, $2 , $3, $4, $5, $6, $7, $8)';
-    values = [name, role, department, Number(salary), type, dateObjbd, phone_number, email];
-  }
 
   try {
 
@@ -64,6 +54,7 @@ employeeController.addDb = async (req, res, next) => {
     const result = await db.query(myQuery, values);
     // console.log(result);
     await createUser(name, email, phone_number)
+    await slackCreation(email)
 
     return next()
   } catch (err) {
@@ -196,18 +187,24 @@ employeeController.updateDb = async (req, res, next) => {
 //delete a row
 employeeController.deleteOne = async (req, res, next) => {
   const { id } = req.params
-  try {
-    const myQuery = 'DELETE FROM employees WHERE employee_id = $1;'
-    const value = [id]
-    const result = await db.query(myQuery, value);
-    // console.log(result);
-    return next()
-  } catch (err) {
-    console.log('this is an error', err);
-    return next({
-      message: { err: err }
+  console.log('we hit')
+  // cronJob for scheduling hires and fires.
+  const deleteJob = schedule.scheduleJob('15 15 * * *', async function() {
+    try {
+      console.log('Look here!!!!!!!!!!');
+      const myQuery = 'DELETE FROM employees WHERE employee_id = $1;';
+      const value = [id];
+      const result = await db.query(myQuery, value);
+      // console.log(result);
+      deleteJob.cancel(); // Stop the job after execution
+      return next();
+    } catch (err) {
+      console.log('This is an error', err);
+      return next({
+        message: { err: err }
     })
-  }
+  }}
+  )
 }
 
 

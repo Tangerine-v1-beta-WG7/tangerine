@@ -10,7 +10,11 @@ module.exports = {
         publicPath: '/dist/',
         filename: 'bundle.js'
     },
-
+    resolve: {
+        fallback: {
+            "path": require.resolve("path-browserify")
+        }
+    },
     module: {
         rules: [
             {
@@ -60,5 +64,5 @@ module.exports = {
             title: 'Development',
             template: './client/index.html'
         })
-    ]
+    ], 
 }
