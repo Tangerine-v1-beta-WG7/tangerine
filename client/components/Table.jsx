@@ -32,7 +32,8 @@ const Table = () => {
             <table>
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
                         <th>Role</th>
                         <th>Department</th>
                         <th>Type</th>
@@ -43,7 +44,8 @@ const Table = () => {
                 <tbody>
                     {currentData.map((employee) => (
                         <tr key={employee.employee_id}>
-                            <td>{employee.name}</td>
+                            <td>{employee.first_name}</td>
+                            <td>{employee.last_name}</td>
                             <td>{employee.role}</td>
                             <td>{employee.department}</td>
                             <td>{employee.type}</td>
