@@ -25,17 +25,35 @@ const Table = () => {
         const date = new Date(databaseDate);
         return date.toISOString().split('T')[0];
     }
-
     return (
         <div className="container">
-
-            <table>
-                <thead>
-                    <tr>
+            <div className='tableHead'>
+                <span>Name</span>
+                <span>Role</span>
+                <span>Department</span>
+                <span>Start Date</span>
+                <span>Type</span>
+            </div> 
+            <div className="tableBody">
+                {currentData.map((employee) => (
+                    <div key={employee.employee_id} className="employee">
+                        <div className="employee-info">
+                            <span><strong>Name:</strong> {employee.name}</span>
+                            <span><strong>Role:</strong> {employee.role}</span>
+                            <span><strong>Department:</strong> {employee.department}</span>
+                            <span><strong>Start Date:</strong> {formatDate(employee.start_date)}</span>
+                            <span><strong>Type:</strong> {employee.type}</span>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            {/* <table>
+                <thead> 
+                    <tr> 
                         <th>Name</th>
                         <th>Role</th>
                         <th>Department</th>
-                        <th>Type</th>
+                        <th>Type</th> 
                         <th>Start Date</th>
                         <th></th>
                     </tr>
@@ -52,8 +70,8 @@ const Table = () => {
                         </tr>
                     ))}
                 </tbody>
-            </table>
-
+            </table> */}
+            <br></br>
             <div className="flex-center">
                 <button className="button-style"
                     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
@@ -65,7 +83,6 @@ const Table = () => {
                     disabled={currentPage === totalPages}>
                     Next
                 </button>
-
             </div>
         </div>
     );

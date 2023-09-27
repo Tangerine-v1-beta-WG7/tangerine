@@ -121,18 +121,33 @@ li {
     color: var(--hover-color);
 }
 
-table {
+.tableHead {
+    display: flex;
+    background-color:#F28500;
+    height: 36px;
+    justify-content: space-between;
+    padding: 9px;
+}
+
+.tableBody {
+    display: grid;
+    height: 540px;
+    background-color:#a4a4a4;
+
+}
+
+ /* table {
     width: 100%;
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 18px;
     box-shadow: var(--box-shadow-color);
-}
+} 
 
 table thead tr {
     background-color: #F28500;
     color: white;
-    text-align: center;
+    text-align: center; 
 }
 
 table th,
@@ -151,7 +166,7 @@ table tbody tr:nth-of-type(even) {
 
 table tbody tr:hover {
     background-color: var(--background-hover);
-}
+} */
 
 button {
     background-color: var(--primary-color);
@@ -461,4 +476,20 @@ li {
     color: red; 
     font-style: italic;
     font-size: .9em;
+}
+
+.employee-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.employee {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 5px;
+}
+
+.employee-info {
+    flex: 1;
 }

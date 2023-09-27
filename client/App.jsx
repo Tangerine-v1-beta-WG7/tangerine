@@ -18,23 +18,3 @@ const App = () => {
 }
 
 export default App;
-
-
-// const App = () => {
-//     return (
-//         // <Router>
-//         <>
-   
-//         <Header />
-//         <div className="container">
-//             {/* <Home /> */}
-    
-//             {/* <Routes>
-//                 <Route path="/" element={<Home />} />
-//                 <Route path="/onboard" element={<Onboarding />} />
-//             </Routes> */}
-
-//         </div>
-//         {/* </Router> */}
-
-// </>
