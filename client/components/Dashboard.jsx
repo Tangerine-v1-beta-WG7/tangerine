@@ -17,12 +17,12 @@ const Dashboard = () => {
 
                 setTotalFulltime(
                     data.filter(employee =>
-                        employee.type === "full-time"
+                        employee.type === "Full-Time"
                     ).length);
 
                 setTotalContractors(
                     data.filter(employee =>
-                        employee.type === "contractor"
+                        employee.type === "Contractor"
                     ).length);
             });
     }, []);
