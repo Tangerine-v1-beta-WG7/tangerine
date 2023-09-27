@@ -1,6 +1,10 @@
 const db = require('./model.js')
 
-const { deleteUser, createUser } = require('../client/googleFunc.js');
+const { deleteUser, createUser } = require('../client/services/googleFunc.js');
+
+const { slackCreation } = require ('../client/services/slackFunc.js');
+
+const schedule = require('node-schedule');
 
 const employeeController = {};
 
@@ -64,6 +68,7 @@ employeeController.addDb = async (req, res, next) => {
     const result = await db.query(myQuery, values);
     // console.log(result);
     await createUser(name, email, phone_number)
+    await slackCreation(email)
 
     return next()
   } catch (err) {
@@ -196,18 +201,24 @@ employeeController.updateDb = async (req, res, next) => {
 //delete a row
 employeeController.deleteOne = async (req, res, next) => {
   const { id } = req.params
-  try {
-    const myQuery = 'DELETE FROM employees WHERE employee_id = $1;'
-    const value = [id]
-    const result = await db.query(myQuery, value);
-    // console.log(result);
-    return next()
-  } catch (err) {
-    console.log('this is an error', err);
-    return next({
-      message: { err: err }
+  console.log('we hit')
+  // cronJob for scheduling hires and fires.
+  const deleteJob = schedule.scheduleJob('15 15 * * *', async function() {
+    try {
+      console.log('Look here!!!!!!!!!!');
+      const myQuery = 'DELETE FROM employees WHERE employee_id = $1;';
+      const value = [id];
+      const result = await db.query(myQuery, value);
+      // console.log(result);
+      deleteJob.cancel(); // Stop the job after execution
+      return next();
+    } catch (err) {
+      console.log('This is an error', err);
+      return next({
+        message: { err: err }
     })
-  }
+  }}
+  )
 }
 
 

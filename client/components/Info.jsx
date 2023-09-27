@@ -3,7 +3,7 @@ import { useState } from "react";
 import "../dropdown.css";
 import dropdown from "../assets/dropdown.png";
 import InfoItem from "./InfoItem.jsx";
-import { useNavigate } from "react-router-dom";
+// import cron from "node-cron";
 
 const formatDate = (databaseDate) => {
     const date = new Date(databaseDate);
@@ -18,6 +18,7 @@ const Info = (props) => {
             const res = await fetch(`/api/delete/${props.employee_id}`, {
                 method: 'DELETE'
             })
+            //rerenders table 
             props.getTableFunc()
         }
         catch (err) {
