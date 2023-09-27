@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 const OnForm = () => {
 
-
-
     const date = new Date();
     let month = ("0" + (date.getMonth() + 1)).slice(-2);
     let day = ("0" + date.getDate()).slice(-2);
@@ -23,9 +21,14 @@ const OnForm = () => {
         phone_number: '',
         email: '',
         services: '',
+        google: false,
+        slack: false,
+        zoom: false,
+        calendar: false,
     }
 
     const [form, setForm] = useState(formDefaults)
+
 
     const handleChange = (e) => {
         setForm({
@@ -36,7 +39,6 @@ const OnForm = () => {
 
     const handleClick = async (e) => {
         e.preventDefault();
-
         try {
             await fetch('api/add', {
                 method: 'POST',
@@ -63,15 +65,15 @@ const OnForm = () => {
                     <ul>
                         <li>
                             <label htmlFor="first_name">First Name</label>
-                            <input type="text" id="first_name" name="first_name" value={form.first_name} onChange={handleChange} />
+                            <input type="text" id="first_name" name="first_name" value={form.first_name} onChange={handleChange} Required/>
                         </li>
                         <li>
                             <label htmlFor="last_name">Last Name</label>
-                            <input type="text" id="last_name" name="last_name" value={form.last_name} onChange={handleChange} />
+                            <input type="text" id="last_name" name="last_name" value={form.last_name} onChange={handleChange} required/>
                         </li>
                         <li>
                             <label htmlFor="role">Role</label>
-                            <select id="role" name="role" value={form.role} onChange={handleChange}>
+                            <select id="role" name="role" value={form.role} onChange={handleChange} required>
                                 <option value="Accountant">Accountant</option>
                                 <option value="Architect">Architect</option>
                                 <option value="Consultant">Consultant</option>
@@ -81,17 +83,18 @@ const OnForm = () => {
                         </li>
                         <li>
                             <label htmlFor="department">Department</label>
-                            <select name="department" id="department" value={form.department} onChange={handleChange}>
+                            <select name="department" id="department" value={form.department} onChange={handleChange} required>
                                 <option value="Education">Education</option>
                                 <option value="Engineering">Engineering</option>
                                 <option value="Human Resources">Human Resources</option>
                                 <option value="Operations">Operations</option>
+                                <option value="Other">Other</option>
                             </select>
 
                         </li>
                         <li>
                             <label htmlFor="salary">Salary</label>
-                            <input type="text" id="salary" name="salary" value={form.salary} onChange={handleChange} />
+                            <input type="text" id="salary" name="salary" value={form.salary} onChange={handleChange} required/>
                         </li>
                         <li>
                             <label htmlFor="start">Start Date</label>
@@ -112,40 +115,39 @@ const OnForm = () => {
                         </li>
                         <li>
                             <label htmlFor="phone">Phone Number</label>
-                            <input type="text" id="phone" name="phone_number" value={form.phone_number} onChange={handleChange} />
+                            <input type="text" id="phone" name="phone_number" value={form.phone_number} onChange={handleChange} required/>
                         </li>
                         <li>
                             <label htmlFor="email">Email</label>
-                            <input type="text" id="email" name="email" value={form.email} onChange={handleChange} />
+                            <input type="text" id="email" name="email" value={form.email} onChange={handleChange} required/>
                         </li>
                         <li>
                             <label htmlFor="services">Services</label>
-                            <div class="checkbox-grid">
+                            <div className="checkbox-grid">
                                 <div>
-                                    <input type="checkbox" class='checkbox-service' id="google" name="google" value={form.google} onChange={handleChange}/> 
+                                    <input type="checkbox" className='checkbox-service' id="google" name="google" value={form.google} onChange={handleChange}/> 
                                     <label>Google</label>
                                 </div>
                                 <div>
-                                    <input type="checkbox" class='checkbox-service' id="slack" name="slack" value={form.slack} onChange={handleChange}/> 
+                                    <input type="checkbox" className='checkbox-service' id="slack" name="slack" value={form.slack} onChange={handleChange}/> 
                                     <label>Slack</label>
                                 </div>
                                 <div>
-                                    <input type="checkbox" class='checkbox-service' id="zoom" name="zoom" value={form.zoom} onChange={handleChange}/> 
+                                    <input type="checkbox" className='checkbox-service' id="zoom" name="zoom" value={form.zoom} onChange={handleChange}/> 
                                     <label>Zoom</label>
                                 </div>
                                 <div>
-                                    <input type="checkbox" class='checkbox-service' id="adp" name="adp" value={form.adp} onChange={handleChange}/> 
+                                    <input type="checkbox" className='checkbox-service' id="calendar" name="calendar" value={form.calendar} onChange={handleChange}/> 
+                                    <label>Calendar</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" className='checkbox-service' id="adp" name="adp" value={form.adp} onChange={handleChange}/> 
                                     <label>ADP</label>
                                 </div>
                                 <div>
-                                    <input type="checkbox" class='checkbox-service' id="expensify" name="expensify" value={form.expensify} onChange={handleChange}/> 
+                                    <input type="checkbox" className='checkbox-service' id="expensify" name="expensify" value={form.expensify} onChange={handleChange}/> 
                                     <label>Expensify</label>
                                 </div>
-                                <div>
-                                    <input type="checkbox" class='checkbox-service' id="tripactions" name="tripactions" value={form.tripactions} onChange={handleChange}/> 
-                                    <label>TripActions</label>
-                                </div>
-                                
                                 
                             </div>
                             
@@ -153,7 +155,7 @@ const OnForm = () => {
 
                     </ul>
 
-                    <button className='btn' id='addNew' onClick={handleClick}>Add New Employee</button>
+                    <input type='submit' className='btn' id='addNew' onClick={handleClick} value="Add New Employee"></input>
 
                 </fieldset>
 
