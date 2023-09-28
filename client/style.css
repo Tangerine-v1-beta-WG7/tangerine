@@ -123,20 +123,14 @@ li {
 
 .tableHead {
     display: flex;
-    background-color: #F28500;
-    font-weight: bold;
-    align-items: center;
     justify-content: space-between;
-    padding: 10px;
 }
 
 .tableHeadName {
     flex: 1;
-    text-align: center;
-    padding: 10px; 
     background-color: #F28500; 
     color: white;
-    margin-right: 80px;
+    padding: 20px;
 }
 
 .tableBody {
@@ -144,8 +138,14 @@ li {
     background-color:white;
 }
 
+.Typography {
+    display: flex;
+    justify-content: space-between;
+    width: 100%
+}
+
 .employeeInfo {
-    margin-right: 100px;
+    flex: 1;
 }    
 
 .employeeDetail {
@@ -376,7 +376,6 @@ li {
 
   #employee-info > ul {
     width: 600px;
-
   }
 
   #employee-info > ul > li {
