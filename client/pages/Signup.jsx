@@ -1,62 +1,114 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
+function Signup() {
 
+    const [error, setError] = useState(false);
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        password: "",
+        password2: "",
+    });
 
-const Signup = () => {
-    const [text, setText] = useState(['', '']);
     const navigate = useNavigate();
 
-    const onChangeHandler = (e) => {
-        console.log(e)
-        text[e.target.id] = e.target.value
-        setText([...text])
+    const { name, email, password, password2 } = formData;
+
+    const onChange = e => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({ ...prevState, [name]: value }));
     }
 
-    const onClickHandler = async (e) => {
-       
-        try {
-            e.preventDefault();
-            const res = await fetch('/api/signup', {
-            method: 'POST',
-            headers: {
-                "content-type": "application/json"
-            },  
-            body: JSON.stringify({
-                username: text[0],
-                password: text[1]
-            })
-          });
-            setText(['', '']);
-            navigate('/');
+    const onSubmit = async e => {
+        e.preventDefault();
 
+        if (password !== password2) {
+            console.error("Passwords do not match");
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/user/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    password: password
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log("Registration successful:", data.message);
+                navigate('/');  // Redirect to the login page after successful registration.
+
+            } else {
+                console.error("Registration failed:", data.message);
+            }
         } catch (err) {
-           console.log('some error', err)
+            console.error("An error occurred during registration:", err);
         }
     }
 
-    const onClickHandler2 = (e) => {
-        navigate('/')
-    }
 
-  return (
-     <div className="signup">
-        <div className="quote">
-            <div className="innerquote">Speedy Employee Service</div>   
-        </div>
-        <form className="signupform">
-           
-            <label htmlFor='username'>username</label>
-            <input type='text'id= {0} className="signuptext" name='username' onChange={onChangeHandler} value={text[0]}></input>
-            <label htmlFor='password'>password</label>
-            <input type='text' className="signuptext" id= {1} name='password' onChange={onChangeHandler} value={text[1]}></input>
-          
-            <div className="thebuttons">
-            <button onClick={onClickHandler}>sign up</button>
-            <button onClick={onClickHandler2}>take me to login</button>
+    return (
+        <section>
+            <div className="heading">
+                <h1>
+                    Sign Up
+                </h1>
             </div>
-        </form>
-     </div>
+            <div className="form">
+                <form onSubmit={onSubmit}>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="name"
+                            name="name"
+                            value={name}
+                            placeholder="Enter your name"
+                            onChange={onChange}
+                        />
+                        <input
+                            type="email"
+                            className="form-control"
+                            id="email"
+                            name="email"
+                            value={email}
+                            placeholder="Enter your email"
+                            onChange={onChange}
+                        />
+                        <input
+                            type="password"
+                            className="form-control"
+                            id="password"
+                            name="password"
+                            value={password}
+                            placeholder="Enter your password"
+                            onChange={onChange}
+                        />
+                        <input
+                            type="password"
+                            className="form-control"
+                            id="password2"
+                            name="password2"
+                            value={password2}
+                            placeholder="Confirm your password"
+                            onChange={onChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <button type="submit" className="btn btn-block">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </section>
     );
 }
 

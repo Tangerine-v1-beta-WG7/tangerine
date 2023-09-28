@@ -11,18 +11,18 @@
 
 
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 
-import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 import Onboarding from "./pages/Onboarding.jsx";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx"
-
+import Profile from "./pages/Profile.jsx";
+import Settings from "./pages/Settings.jsx";
 
 const router = createBrowserRouter([{
   path: "/",
@@ -39,7 +39,15 @@ const router = createBrowserRouter([{
 {
   path: "signup",
   element: <Signup />
-}
+},
+{
+  path: "profile",
+  element: <Profile />
+},
+{
+  path: "settings",
+  element: <Settings />
+},
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
