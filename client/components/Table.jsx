@@ -12,6 +12,13 @@ const Table = () => {
     const [rowsPerPage] = useState(10);
     const [employeeDropdownStates, setEmployeeDropdownStates] = useState({}); // Info drop-down toggle state
 
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    const [formData, setFormData] = useState({
+        end_date: "",
+        obTime: "",
+    });
+
     const getTableFunc = () => {
         fetch("/api/table")
             .then(response => response.json())
@@ -29,6 +36,40 @@ const Table = () => {
     const formatDate = (databaseDate) => {
         const date = new Date(databaseDate);
         return date.toISOString().split('T')[0];
+    };
+
+    const clickHandle = async (employeeId) => {
+        console.log('hello Out', employeeId);
+        try {
+            console.log('hello In');
+            const res = await fetch(`/api/delete/${employeeId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    end_date: formData.end_date,
+                    obTime: formData.obTime,
+                    employeeId: employeeId,
+                }),
+            });
+            //rerenders table 
+            getTableFunc();
+        } catch (err) {
+            console.log('error deleting employee');
+        }
+    }
+    
+
+    const handleFormChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    }
+
+    const handleSubmit = () => {
+        console.log("Form Data", formData);
     }
 
     return (
@@ -64,8 +105,31 @@ const Table = () => {
             <div className="employeeDetail">Email: {employee.email}</div>
             <div className="employeeDetail">Phone Number: {employee.phone_number}</div>
             <br />
-            <button>Gettem Outta Here</button>
-            <button>Change This Person</button>
+                <div className="dropdown">
+                    <button onClick={() => setDropdownOpen(!dropdownOpen)}>
+                        {dropdownOpen ? "Go Back" : "Offboard"}
+                    </button>
+                        {dropdownOpen && (
+                            <div className="dropdown-content">
+                                <form>
+                                    <ul>
+                                        <li>
+                                            <label htmlFor="end_date">Offboard Date </label>
+                                            <input type="date" id="end" name="end_date" value={formData.end_date} onChange={handleFormChange}/>
+                                        </li>
+                                        <li>
+                                            <label htmlFor="end_time">Offboard Time </label>
+                                            <input type="time" id="obTime" name="obTime" required value={formData.obTime} onChange={handleFormChange}/>
+                                        </li>
+                                        <li>
+                                        <button type="submit" onClick={() => clickHandle(employee.employee_id)}>Confirm Offboarding</button>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        )}
+                    {dropdownOpen ? null : <button className="Button">Edit Info</button>}
+                </div>
         </Typography>
         </AccordionDetails>
     </Accordion>
