@@ -48,17 +48,13 @@ const Table = () => {
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header">
-        <Typography>
-            <div className="TypographyInfo">
+        <Typography className="Typography">
             <span className="employeeInfo">{employee.first_name}</span>
             <span className="employeeInfo">{employee.last_name}</span>
             <span className="employeeInfo">{employee.department}</span>
             <span className="employeeInfo">{employee.role}</span>
-            <span className="employeeInfo">
-                {formatDate(employee.start_date)}
-            </span>
+            <span className="employeeInfo">{formatDate(employee.start_date)}</span>
             <span className="employeeInfo">{employee.type}</span>
-            </div>
         </Typography>
         </AccordionSummary>
         <AccordionDetails>
